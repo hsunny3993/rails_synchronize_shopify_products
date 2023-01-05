@@ -1,0 +1,32 @@
+<div class="container-xl">
+  <h1>Products</h1>
+
+  <%= form_for(:product, url: import_products_from_json_path, method: :post, data: {remote: true}, id: "csv-form") do |f| %>
+    <div class="custom-file mb-3 mt-3">
+<!--      <input type="file" class="custom-file-input" id="customFile">-->
+      <%= f.file_field :json_file, multiple: false, required: true, accept: 'application/json', class: 'custom-file-input' %>
+      <label class="custom-file-label" for="customFile">Choose JSON file</label>
+    </div>
+    <%= f.submit "Import", class: 'btn btn-primary flex-fill ml-1'%>
+  <% end %>
+
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Created time</th>
+      <th scope="col">Updated time</th>
+    </tr>
+    </thead>
+
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product['id'] %></td>
+        <td><%= product['title'] %></td>
+        <td><%= product['created_at'] %></td>
+        <td><%= product['updated_at'] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

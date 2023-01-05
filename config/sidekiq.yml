@@ -1,0 +1,14 @@
+---
+:concurrency: 2
+staging:
+  :concurrency: 2
+production:
+  :concurrency: 3
+:verbose: false
+:timeout: 10000
+:queues:
+  - critical
+  - high
+  - mailers
+  - default
+  - low
