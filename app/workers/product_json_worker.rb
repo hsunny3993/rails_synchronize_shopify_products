@@ -7,7 +7,7 @@ class ProductJsonWorker
   def perform
     json_data_list = Rails.cache.redis.get("json_data_list")
 
-    unless json_data_list.empty?
+    unless json_data_list.present?
       json_uuids = json_data_list.split(',')
       Rails.logger.info json_uuids.inspect
 
